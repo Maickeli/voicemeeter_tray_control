@@ -1,0 +1,5 @@
+// appicon.rc
+#include <windows.h>
+#define IDI_MYICON 101
+
+IDI_MYICON ICON "appicon.ico"
