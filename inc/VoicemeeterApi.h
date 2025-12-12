@@ -28,6 +28,9 @@ class Voicemeeter {
   float getBusGain(int num);
   void setBusGain(int num, float gain);
 
+  float getBusMute(int num);
+  void setBusMute(int num, bool mute);
+
   float getBusGainNormalized(int num);
 
   int checkParamsDirty();

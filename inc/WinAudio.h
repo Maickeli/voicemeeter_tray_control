@@ -16,6 +16,7 @@ class WinAudio {
   bool init();
 
   void setVolume(float volume);
+  void setMute(bool mute);
 
  private:
   IAudioEndpointVolume* ep_volume_ = nullptr;

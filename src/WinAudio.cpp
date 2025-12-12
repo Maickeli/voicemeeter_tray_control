@@ -69,3 +69,9 @@ void WinAudio::setVolume(float volume) {
   if (!ep_volume_) return;
   ep_volume_->SetMasterVolumeLevelScalar(volume, nullptr);
 }
+
+void WinAudio::setMute(bool mute) {
+  if (!ep_volume_) return;
+
+  ep_volume_->SetMute(mute ? TRUE : FALSE, nullptr);
+}

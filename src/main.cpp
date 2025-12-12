@@ -47,6 +47,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int) {
   float vm_volume = vm.getBusGainNormalized(0);
   win_audio.setVolume(vm_volume);
 
+  bool vm_mute = vm.getBusMute(0);
+  win_audio.setMute(vm_mute);
+
   MSG msg;
   while (GetMessage(&msg, nullptr, 0, 0)) {
     TranslateMessage(&msg);

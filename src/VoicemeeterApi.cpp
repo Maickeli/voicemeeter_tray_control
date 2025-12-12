@@ -51,3 +51,18 @@ float Voicemeeter::getBusGainNormalized(int num) {
 }
 
 int Voicemeeter::checkParamsDirty() { return isParamsDirty(); }
+
+float Voicemeeter::getBusMute(int num) {
+  isParamsDirty();
+  char param[64];
+  sprintf_s(param, "Bus[%d].Mute", num);
+  float mute = 0;
+  getParam(param, &mute);
+  return mute == 1.0f;
+}
+
+void Voicemeeter::setBusMute(int num, bool mute) {
+  char param[64];
+  sprintf_s(param, "Bus[%d].Mute", num);
+  setParam(param, mute);
+}

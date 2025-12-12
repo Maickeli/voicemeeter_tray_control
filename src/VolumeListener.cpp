@@ -19,21 +19,20 @@ ULONG STDMETHODCALLTYPE VolumeListener::AddRef() { return InterlockedIncrement(&
 
 ULONG STDMETHODCALLTYPE VolumeListener::Release() {
   ULONG ul_ref = InterlockedDecrement(&cref_);
-  if (ul_ref == 0) {
-    delete this;
-  }
   return ul_ref;
 }
 
-// IAudioEndpointVolumeCallback method (This is the important part)
 HRESULT STDMETHODCALLTYPE VolumeListener::OnNotify(AUDIO_VOLUME_NOTIFICATION_DATA* notify_data) {
   if (notify_data == nullptr) return S_OK;
 
-  float volumeScalar = notify_data->fMasterVolume;
-  float voiceMeeterVolume = volumeScalar * 72.0f - 60.0f;
+  float volume = notify_data->fMasterVolume;
+  float vm_volume = volume * 72.0f - 60.0f;
+
+  bool mute = notify_data->bMuted != FALSE;
 
   if (vm_) {
-    vm_->setBusGain(0, voiceMeeterVolume);
+    vm_->setBusGain(0, vm_volume);
+    vm_->setBusMute(0, mute);
   }
 
   return S_OK;
